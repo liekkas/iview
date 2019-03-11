@@ -116,7 +116,7 @@ describe('DatePicker.vue', () => {
     `);
 
     const picker = vm.$children[0];
-    picker.handleIconClick();
+    picker.handleFocus({type: 'focus'});
     vm.$nextTick(() => {
       const displayField = vm.$el.querySelector('.ivu-input');
       const clickableCells = vm.$el.querySelectorAll('.ivu-date-picker-cells-cell');
@@ -169,7 +169,7 @@ describe('DatePicker.vue', () => {
     });
 
     const picker = vm.$children[0];
-    picker.handleIconClick();
+    picker.handleFocus({type: 'focus'});
     vm.$nextTick(() => {
       const panel = vm.$el.querySelector('.ivu-picker-panel-content');
       const dayPanel = panel.querySelector('[class="ivu-date-picker-cells"]');
@@ -243,7 +243,7 @@ describe('DatePicker.vue', () => {
     `);
 
     const picker = vm.$children[0];
-    picker.handleIconClick();
+    picker.handleFocus({type: 'focus'});
     vm.$nextTick(() => {
       const displayField = vm.$el.querySelector('.ivu-input');
       const clickableCells = vm.$el.querySelectorAll('.ivu-date-picker-cells-cell');
@@ -266,9 +266,11 @@ describe('DatePicker.vue', () => {
             // it should be closed by now
             expect(picker.visible).to.equal(false);
             // open picker again
-            picker.handleIconClick();
+              picker.handleFocus({type: 'focus'});
+              picker.visible = true;
 
-            vm.$nextTick(() => {
+
+              vm.$nextTick(() => {
               expect(picker.visible).to.equal(true);
               expect(JSON.stringify(picker.internalValue)).to.equal('[null,null]');
               expect(displayField.value).to.equal('');
@@ -355,7 +357,7 @@ describe('DatePicker.vue', () => {
     `);
 
     const picker = vm.$children[0];
-    picker.handleIconClick();
+    picker.handleFocus({type: 'focus'});
     vm.$nextTick(() => {
       const now = new Date();
       const labels = vm.$el.querySelectorAll('.ivu-picker-panel-body .ivu-date-picker-header-label');
@@ -369,7 +371,7 @@ describe('DatePicker.vue', () => {
     const formater = require('../../../src/components/date-picker/util').formatDateLabels;
     const expectedResults = require('./assets/locale-expects.js').default;
     const locales = [
-      'de-DE', 'en-US', 'es-ES', 'fr-FR', 'id-ID', 'ja-JP', 'ko-KR', 'pt-BR',
+      'de-DE', 'en-US', 'es-ES', 'fi-FI', 'fr-FR', 'id-ID', 'ja-JP', 'ko-KR', 'pt-BR',
       'pt-PT', 'ru-RU', 'sv-SE', 'tr-TR', 'vi-VN', 'zh-CN', 'zh-TW'
     ].reduce((obj, locale) => {
       obj[locale] = require('../../../src/locale/lang/' + locale).default;
